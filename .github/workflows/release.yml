@@ -1,0 +1,32 @@
+name: Publish release
+
+on:
+  push:
+    paths:
+      - ".release/v0.3.0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate package
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python scripts/validate-package.py
+      - name: Publish v0.3.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v0.3.0 >/dev/null 2>&1; then
+            echo "v0.3.0 already exists"
+            exit 0
+          fi
+          gh release create v0.3.0 \
+            --target main \
+            --title "Turkish Native v0.3.0 — OSS preview" \
+            --notes-file docs/RELEASE_v0.3.0.md
