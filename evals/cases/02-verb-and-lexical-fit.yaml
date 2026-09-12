@@ -1,0 +1,69 @@
+version: 3
+cases:
+- id: p11-build-page
+  pattern: 11
+  input: Klevia her işletmeye sayfa kurar.
+  expected: Klevia her işletme için sayfa hazırlar.
+- id: p11-site-control
+  pattern: 11
+  input: Müşteri için sıfırdan web sitesi kuruyoruz.
+  expected: Müşteri için sıfırdan web sitesi kuruyoruz.
+- id: p12-play-page
+  pattern: 12
+  input: Sayfanın üstünde oynayan işletmeyi gör.
+  expected: Sayfayı düzenleyen işletmeyi gör.
+- id: p12-hour-eating
+  pattern: 12
+  input: Saat yiyen iki işi Klevia devralsın.
+  expected_not_contains:
+  - Saat yiyen
+- id: p13-perform
+  pattern: 13
+  input: Kullanıcı silme işlemini gerçekleştirebilir.
+  expected: Kullanıcı hesabı silebilir.
+- id: p14-control-offer
+  pattern: 14
+  input: Bu özellik daha fazla kontrol sunar.
+  expected_not_contains:
+  - kontrol sunar
+- id: p15-passive
+  pattern: 15
+  input: Liste onaylandıktan sonra demolar hazırlanır.
+  instruction: Rewrite so the product actor is explicit if the context says Klevia prepares the demos.
+  expected_contains:
+  - Klevia
+- id: p16-causative
+  pattern: 16
+  input: Sisteme listeyi tarattırıp demoları hazırlattırabilirsin.
+  expected_not_contains:
+  - tarattırıp
+  - hazırlattırabilirsin
+- id: p17-close-customer
+  pattern: 17
+  input: Bu özellik müşteriyi kapatmanı kolaylaştırır.
+  expected_not_contains:
+  - müşteriyi kapat
+- id: p18-phone-adjective
+  pattern: 18
+  input: 16 işletme bulundu, 12'si telefonlu.
+  expected_contains:
+  - 16 işletme
+  - '12'
+  - telefon numarası
+- id: p18-phone-object
+  pattern: 18
+  input: Telefon bulundu.
+  expected: Telefon numarası bulundu.
+- id: p19-olarak
+  pattern: 19
+  input: Bu özellik ekipler için bir kontrol aracı olarak çalışır.
+  expected_not_contains:
+  - olarak çalışır
+- id: p20-email-over
+  pattern: 20
+  input: Müşteriye e-posta üzerinden ulaşabilirsin.
+  expected: Müşteriye e-postayla ulaşabilirsin.
+- id: p20-api-control
+  pattern: 20
+  input: API üzerinden bağlanır.
+  expected: API üzerinden bağlanır.

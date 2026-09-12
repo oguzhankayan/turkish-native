@@ -1,0 +1,79 @@
+version: 3
+cases:
+- id: p41-register-sales-control
+  pattern: 41
+  input: Sen satışa bak.
+  expected: Sen satışa bak.
+- id: p41-register-formal
+  pattern: 41
+  input: Başvurunuz en geç 30 gün içinde sonuçlandırılır.
+  instruction: Keep formal register; do not make it chatty.
+  expected: Başvurunuz en geç 30 gün içinde sonuçlandırılır.
+- id: p42-legal-control
+  pattern: 42
+  input: Tüketici sıfatıyla hareket eden kullanıcılar bakımından yürürlükteki tüketici mevzuatı uygulanır.
+  expected: Tüketici sıfatıyla hareket eden kullanıcılar bakımından yürürlükteki tüketici mevzuatı uygulanır.
+- id: p43-security-absolute
+  pattern: 43
+  input: Tarayıcın ile Klevia arasında hiçbir bilgi açıkta kalmaz.
+  instruction: Keep the supported security claim but remove the unnecessary absolute.
+  expected_not_contains:
+  - hiçbir bilgi
+- id: p43-security-slogan
+  pattern: 43
+  input: Güvenlik bir özellik değil, temel.
+  instruction: Rewrite as a factual security statement without inventing a control.
+  expected_property: must_request_or_use_supported_fact
+- id: p44-command
+  pattern: 44
+  input: Paketi npm install -g klevia-mcp komutuyla kur.
+  expected_contains:
+  - npm install -g klevia-mcp
+- id: p44-route
+  pattern: 44
+  input: MCP endpoint'i /api/mcp yolunda çalışır.
+  expected_contains:
+  - MCP
+  - /api/mcp
+- id: p45-no-invention
+  pattern: 45
+  input: Klevia kullanıcıların bilgilerini korur.
+  instruction: Do not add encryption, certifications, retention periods, or other unsupported controls.
+  expected_property: must_not_add_unsupported_claims
+- id: p46-natural-control
+  pattern: 46
+  input: Bulamazsa uydurmaz.
+  expected: Bulamazsa uydurmaz.
+- id: p46-site-control
+  pattern: 46
+  input: Site kurmak için alan adını bağla.
+  expected: Site kurmak için alan adını bağla.
+- id: p47-agreement
+  pattern: 47
+  input: Sen sayfayı gönderir, satışı tamamlarsın.
+  expected: Sen sayfayı gönderirsin, satışı tamamlarsın.
+- id: p47-machine-format-control
+  pattern: 47
+  input: '{"score": 4.8}'
+  instruction: Machine-readable JSON. Do not localize the decimal separator.
+  expected: '{"score": 4.8}'
+- id: p48-native-read
+  pattern: 48
+  input: Kaynağı belli telefon.
+  expected: Numaranın nereden geldiği belli.
+- id: p48-source-free
+  pattern: 48
+  input: Sayfa hazır şablondan mı kuruluyor?
+  expected: Sayfa hazır bir şablondan mı hazırlanıyor?
+- id: control-site-kur
+  pattern: 46
+  input: Yeni web sitesi kuruyoruz.
+  expected: Yeni web sitesi kuruyoruz.
+- id: control-api
+  pattern: 44
+  input: API anahtarını ayarlardan iptal edebilirsin.
+  expected: API anahtarını ayarlardan iptal edebilirsin.
+- id: control-legal
+  pattern: 42
+  input: Bu sözleşmeye Türkiye Cumhuriyeti hukuku uygulanır.
+  expected: Bu sözleşmeye Türkiye Cumhuriyeti hukuku uygulanır.

@@ -1,0 +1,66 @@
+version: 3
+cases:
+- id: p01-who-opened
+  pattern: 1
+  input: Kim açtı, kim düzenledi gör.
+  expected: Kimin açtığını, kimin düzenlediğini gör.
+- id: p01-direct-question-control
+  pattern: 1
+  input: Kim açtı?
+  expected: Kim açtı?
+- id: p02-chain
+  pattern: 2
+  input: Bölge taratmayı, demo hazırlamayı ve bağlantı almayı sohbetten yaptır.
+  expected_contains:
+  - bölgeyi
+  - demoları
+  expected_not_contains:
+  - hazırlamayı ve bağlantı almayı
+- id: p02-bureaucratic
+  pattern: 2
+  input: İşlemin gerçekleştirilmesi için butona basılması gerekmektedir.
+  expected: İşlemi başlatmak için butona basın.
+- id: p03-purpose
+  pattern: 3
+  input: Bu sistemin temel amacı kullanıcı deneyiminin iyileştirilmesidir.
+  expected: Bu sistem kullanıcı deneyimini iyileştirir.
+- id: p04-pronoun-repeat
+  pattern: 4
+  input: Kullanıcı listeyi açar. Kullanıcı işletmeyi seçer. Kullanıcı demoyu hazırlar.
+  expected_not_contains:
+  - Kullanıcı işletmeyi
+  - Kullanıcı demoyu
+- id: p05-possessive
+  pattern: 5
+  input: Her birine kendi adıyla sayfasını kursun.
+  expected_contains:
+  - Her işletme için
+  - bir sayfa
+- id: p06-noun-stack
+  pattern: 6
+  input: Müşteri veri güvenlik politikası güncellendi.
+  expected_not_contains:
+  - Müşteri veri güvenlik politikası
+- id: p07-coordination
+  pattern: 7
+  input: Listeyi onayla ve demolar hazırlanır ve bağlantılar gelir.
+  expected_not_contains:
+  - ve demolar hazırlanır ve
+- id: p08-boundary-long
+  pattern: 8
+  input: Klevia işletmeleri bulur, telefonlarını kontrol eder, demoları hazırlar, bunları panelde görürsün, sonra bağlantıyı müşteriye gönderebilirsin.
+  expected_max_sentences: 2
+- id: p09-focus
+  pattern: 9
+  input: Sadece planını istediğin zaman değiştirebilirsin.
+  instruction: Preserve the meaning that only the plan can be changed, not that it can only be changed at a certain time.
+  expected_contains:
+  - Yalnızca planını
+- id: p10-whatsapp-case
+  pattern: 10
+  input: Sayfayı WhatsApp'ta gönder.
+  expected: Sayfayı WhatsApp'tan gönder.
+- id: p10-source-case
+  pattern: 10
+  input: Numarayı açık kaynaklarda bulur.
+  expected: Numarayı açık kaynaklardan bulur.

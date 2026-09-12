@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "turkish-native",
+  "owner": {
+    "name": "Oğuzhan Kayan",
+    "url": "https://github.com/oguzhankayan"
+  },
+  "description": "Install Turkish Native as a Claude plugin.",
+  "plugins": [
+    {
+      "name": "turkish-native",
+      "source": "./",
+      "description": "Write Turkish as native Turkish instead of translated English.",
+      "license": "MIT",
+      "keywords": ["turkish", "writing", "localization", "translationese", "copywriting"]
+    }
+  ]
+}

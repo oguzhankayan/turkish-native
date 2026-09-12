@@ -1,0 +1,34 @@
+name: Pattern proposal
+description: Propose a recurring Turkish translationese or non-native writing pattern
+title: "[Pattern]: "
+labels: ["pattern"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Pattern
+      description: Describe the recurring problem. Explain why it is structural or contextual rather than personal style.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Minimal examples
+      description: Provide at least one bad → better Turkish example.
+      placeholder: |
+        Bad: ...
+        Better: ...
+    validations:
+      required: true
+  - type: textarea
+    id: false_positive
+    attributes:
+      label: False-positive guard
+      description: When would the flagged form be natural or correct?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Recurrence / context
+      description: Where have you seen this pattern recur? Do not paste private or confidential text.

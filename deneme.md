@@ -1,3 +1,0 @@
-# Deneme
-
-Türkçe bir metin.

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "turkish-native",
+  "description": "Write Turkish as native Turkish instead of translated English.",
+  "version": "0.3.0",
+  "author": {
+    "name": "Oğuzhan Kayan",
+    "url": "https://github.com/oguzhankayan"
+  },
+  "homepage": "https://github.com/oguzhankayan/turkish-native",
+  "repository": "https://github.com/oguzhankayan/turkish-native",
+  "license": "MIT",
+  "keywords": ["turkish", "writing", "localization", "translationese", "copywriting", "prose"],
+  "skills": ["./"]
+}

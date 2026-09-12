@@ -1,0 +1,4 @@
+interface:
+  display_name: "Turkish Native"
+  short_description: "Fix translationese and write natural Turkish"
+  default_prompt: "Use $turkish-native to write or rewrite this text in natural Turkish while preserving its meaning, facts, and intended register."

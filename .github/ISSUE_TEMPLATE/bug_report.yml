@@ -1,0 +1,30 @@
+name: Behavior bug
+description: Report a case where Turkish Native misses a problem or overcorrects natural Turkish
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: input
+    attributes:
+      label: Input
+      description: The Turkish text or localization input that exposed the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Explain the natural-Turkish distinction, not only your preferred rewrite.
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Agent / model / runtime
+      placeholder: Claude Code, Codex, ChatGPT, OpenCode, etc.

@@ -1,0 +1,59 @@
+version: 3
+cases:
+- id: p31-metaphor
+  pattern: 31
+  input: Bir cümle içeri. Bir demo dışarı.
+  expected_not_contains:
+  - içeri
+  - dışarı
+- id: p32-repeat
+  pattern: 32
+  input: Müşteri bulmak zor. Asıl mesele müşteriyi bulmak. Klevia bu zorluğu çözer ve işletmeleri bulur.
+  expected_max_sentences: 2
+- id: p33-not-x
+  pattern: 33
+  input: Bu sadece bir liste değil, satış motorun.
+  expected_not_contains:
+  - sadece bir liste değil
+- id: p34-asıl
+  pattern: 34
+  input: Asıl mesele müşteriye ulaşmak.
+  instruction: Remove staged importance unless a real contrast exists.
+  expected_not_contains:
+  - Asıl mesele
+- id: p34-real-contrast-control
+  pattern: 34
+  input: Fiyat önemli ama bu karşılaştırmada asıl fark destek süresi.
+  expected: Fiyat önemli ama bu karşılaştırmada asıl fark destek süresi.
+- id: p35-fragments
+  pattern: 35
+  input: Daha hızlı. Daha akıllı. Daha güçlü.
+  expected_max_sentences: 2
+- id: p36-triad
+  pattern: 36
+  input: Hızlı, kolay ve güçlü.
+  instruction: Rewrite only if these are empty generic benefits; use concrete supported benefits and do not invent facts.
+  expected_property: must_request_or_use_supported_fact
+- id: p37-corporate
+  pattern: 37
+  input: Bu noktada kullanıcı odaklı bir çözüm sunmak kritik öneme sahiptir.
+  expected_not_contains:
+  - Bu noktada
+  - çözüm sunmak
+  - kritik öneme
+- id: p38-superlative
+  pattern: 38
+  input: İş akışınızı kökten değiştiren benzersiz çözüm.
+  expected_not_contains:
+  - kökten
+  - benzersiz
+- id: p39-next-level
+  pattern: 39
+  input: İşinizi bir üst seviyeye taşır.
+  instruction: Replace with supported behavior; do not invent one.
+  expected_property: must_request_or_use_supported_fact
+- id: p40-cta
+  pattern: 40
+  input: Bir sonraki müşterin bir cümle uzağında. Yaz, Klevia bulsun.
+  expected_not_contains:
+  - bir cümle uzağında

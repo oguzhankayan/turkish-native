@@ -1,0 +1,84 @@
+version: 3
+cases:
+- id: p21-orchestrator
+  pattern: 21
+  input: Orchestrator adayları pipeline'a taşır.
+  instruction: Rewrite for a non-technical product page.
+  expected_not_contains:
+  - Orchestrator
+  - pipeline
+- id: p21-run
+  pattern: 21
+  input: Gerçek İstanbul run'ı tamamlandı.
+  expected: Gerçek İstanbul taraması tamamlandı.
+- id: p22-record
+  pattern: 22
+  input: Aynı işletme için tekrar kayıt oluşturulmaz.
+  expected: Aynı işletme ikinci kez eklenmez.
+- id: p23-card
+  pattern: 23
+  input: Kart istemiyoruz.
+  expected: Kredi kartı gerekmez.
+- id: p23-plan-control
+  pattern: 23
+  input: Planını yükselt.
+  instruction: Keep this if it matches a SaaS product voice; do not rewrite merely because it resembles English.
+  expected: Planını yükselt.
+- id: p24-action
+  pattern: 24
+  input: Bildirim gelince aksiyon al.
+  instruction: Use the concrete action if supported; otherwise use a neutral direct verb.
+  expected_not_contains:
+  - aksiyon al
+- id: p24-close-sale
+  pattern: 24
+  input: Demoyu gönder ve satışı kapat.
+  expected_not_contains:
+  - satışı kapat
+- id: p25-success
+  pattern: 25
+  input: İşlem başarıyla gerçekleştirilmiştir.
+  expected: Kaydedildi.
+- id: p26-label-button
+  pattern: 26
+  input: Telefon doğrulama
+  instruction: This is a button that starts verification.
+  expected: Telefonu doğrula
+- id: p26-label-nav-control
+  pattern: 26
+  input: Telefon doğrulama
+  instruction: This is a navigation section title, not a button.
+  expected: Telefon doğrulama
+- id: p27-implementation
+  pattern: 27
+  input: Bu butona basıldığında sistem yeni bir kayıt oluşturur.
+  instruction: Rewrite as user-facing button or status copy without narrating implementation.
+  expected_not_contains:
+  - butona basıldığında
+  - kayıt oluşturur
+- id: p28-title-case
+  pattern: 28
+  input: Hızlı Kurulum
+  instruction: This is an ordinary Turkish feature heading, not a brand-styled title.
+  expected: Hızlı kurulum
+- id: p29-decimal
+  pattern: 29
+  input: 12 yorum, 4.8 puan
+  expected: 12 yorum, 4,8 puan
+- id: p29-plural
+  pattern: 29
+  input: 3 kullanıcılar davet edildi.
+  expected: 3 kullanıcı davet edildi.
+- id: p30-link-control
+  pattern: 30
+  input: Linki müşteriye gönder.
+  expected: Linki müşteriye gönder.
+- id: control-demo
+  pattern: 30
+  input: Demo hazır.
+  expected: Demo hazır.
+- id: control-dashboard
+  pattern: 30
+  input: Dashboard'da görebilirsin.
+  instruction: Keep dashboard if it is established product terminology.
+  expected: Dashboard'da görebilirsin.
