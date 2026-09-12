@@ -2,7 +2,9 @@
 
 **Türkçeyi çevrilmiş İngilizce gibi değil, Türkçe gibi yaz.**
 
-[English README](README.md) · [Skill](SKILL.md) · [Örnekler](examples/before-after.md) · [Katkı rehberi](CONTRIBUTING.md) · [Yol haritası](ROADMAP.md)
+[![Paket doğrulama](https://github.com/oguzhankayan/turkish-native/actions/workflows/validate.yml/badge.svg)](https://github.com/oguzhankayan/turkish-native/actions/workflows/validate.yml) [![Sürüm](https://img.shields.io/github/v/release/oguzhankayan/turkish-native?display_name=tag)](https://github.com/oguzhankayan/turkish-native/releases/latest) [![Lisans: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+[English README](README.md) · [Skill](SKILL.md) · [Örnekler](examples/before-after.md) · [Sürüm](https://github.com/oguzhankayan/turkish-native/releases/tag/v0.3.0) · [Katkı rehberi](CONTRIBUTING.md) · [Yol haritası](ROADMAP.md)
 
 Turkish Native, doğal Türkçe yazmak ve mevcut metinleri düzenlemek için hazırlanmış açık kaynaklı bir agent skill'idir. Özellikle yapay zekâ ve lokalizasyon metinlerinde görülen bir soruna odaklanır: Dilbilgisi açısından anlaşılır olduğu hâlde cümle yapısı, fiil seçimi, ürün jargonu veya pazarlama kalıplarıyla hâlâ çevrilmiş İngilizce gibi duran Türkçe.
 
