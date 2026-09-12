@@ -2,7 +2,9 @@
 
 **Write Turkish as Turkish, not translated English.**
 
-[Türkçe README](README.tr.md) · [Skill](SKILL.md) · [Examples](examples/before-after.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md)
+[![Validate package](https://github.com/oguzhankayan/turkish-native/actions/workflows/validate.yml/badge.svg)](https://github.com/oguzhankayan/turkish-native/actions/workflows/validate.yml) [![Release](https://img.shields.io/github/v/release/oguzhankayan/turkish-native?display_name=tag)](https://github.com/oguzhankayan/turkish-native/releases/latest) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+[Türkçe README](README.tr.md) · [Skill](SKILL.md) · [Examples](examples/before-after.md) · [Release](https://github.com/oguzhankayan/turkish-native/releases/tag/v0.3.0) · [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md)
 
 Turkish Native is an open-source agent skill for writing and editing natural Turkish. It targets a specific failure mode in AI-generated and localized copy: Turkish that is grammatically understandable but still carries foreign sentence structure, unnatural collocations, literal SaaS or sales calques, internal product jargon, or model-written marketing formulas.
 
