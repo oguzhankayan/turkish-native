@@ -2,14 +2,22 @@ name: Publish release
 
 on:
   push:
+    branches:
+      - main
     tags:
       - "v*"
+    paths:
+      - "SKILL.md"
+      - ".claude-plugin/plugin.json"
+      - "CHANGELOG.md"
+      - "docs/RELEASE_v*.md"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
     inputs:
       tag:
-        description: "Release tag, for example v0.4.0"
+        description: "Release tag, for example v0.5.0"
         required: true
-        default: "v0.3.0"
+        default: "v0.5.0"
 
 permissions:
   contents: write
@@ -33,10 +41,18 @@ jobs:
         shell: bash
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "tag=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+            TAG="${{ inputs.tag }}"
+          elif [ "${{ github.ref_type }}" = "tag" ]; then
+            TAG="${GITHUB_REF_NAME}"
           else
-            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            VERSION="$(sed -n 's/^[[:space:]]*version:[[:space:]]*"\([^"]*\)".*/\1/p' SKILL.md | head -n 1)"
+            if [ -z "$VERSION" ]; then
+              echo "Could not read version from SKILL.md" >&2
+              exit 1
+            fi
+            TAG="v${VERSION}"
           fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -51,12 +67,12 @@ jobs:
           NOTES="docs/RELEASE_${TAG}.md"
           if [ -f "$NOTES" ]; then
             gh release create "$TAG" \
-              --target main \
+              --target "$GITHUB_SHA" \
               --title "Turkish Native $TAG" \
               --notes-file "$NOTES"
           else
             gh release create "$TAG" \
-              --target main \
+              --target "$GITHUB_SHA" \
               --title "Turkish Native $TAG" \
               --generate-notes
           fi
