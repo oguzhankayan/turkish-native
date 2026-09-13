@@ -4,7 +4,7 @@
 
 [![Paket doğrulama](https://github.com/oguzhankayan/turkish-native/actions/workflows/validate.yml/badge.svg)](https://github.com/oguzhankayan/turkish-native/actions/workflows/validate.yml) [![Sürüm](https://img.shields.io/github/v/release/oguzhankayan/turkish-native?display_name=tag)](https://github.com/oguzhankayan/turkish-native/releases/latest) [![Lisans: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[English README](README.md) · [Skill](SKILL.md) · [Örnekler](examples/before-after.md) · [Sürüm](https://github.com/oguzhankayan/turkish-native/releases/tag/v0.3.0) · [Katkı rehberi](CONTRIBUTING.md) · [Yol haritası](ROADMAP.md)
+[English README](README.md) · [Skill](SKILL.md) · [Örnekler](examples/before-after.md) · [Sürüm](https://github.com/oguzhankayan/turkish-native/releases/latest) · [Katkı rehberi](CONTRIBUTING.md) · [Yol haritası](ROADMAP.md)
 
 Turkish Native, doğal Türkçe yazmak ve mevcut metinleri düzenlemek için hazırlanmış açık kaynaklı bir agent skill'idir. Özellikle yapay zekâ ve lokalizasyon metinlerinde görülen bir soruna odaklanır: Dilbilgisi açısından anlaşılır olduğu hâlde cümle yapısı, fiil seçimi, ürün jargonu veya pazarlama kalıplarıyla hâlâ çevrilmiş İngilizce gibi duran Türkçe.
 
@@ -14,7 +14,7 @@ Bir cümle dilbilgisi açısından doğru olabilir ve yine de doğal Türkçe ol
 
 Yazım ve dilbilgisi araçları mekanik hataları yakalar. Turkish Native başka bir katmana bakar: **cümlenin Türkçede doğal kurulup kurulmadığına**.
 
-Agent'ın kaynak cümlenin iskeletini koruması yerine anlamdan hareket etmesini ister. Bu yüzden önce kelimelere değil yapıya bakar: yan cümleler, adlaştırma, sözcük dizimi, hâl ekleri, iyelik, fiil–isim birliktelikleri, ürün dili, ton ve bilgi sadakati.
+Agent'ın kaynak cümlenin iskeletini koruması yerine anlamdan hareket etmesini ister. Bu yüzden önce kelimelere değil yapıya bakar: yan cümleler, adlaştırma, sözcük dizimi, hâl ekleri, iyelik, fiil–isim birliktelikleri, ürün dili, ton, bilgi sadakati ve sayfa düzeyinde sektör tutarlılığı.
 
 ## Örnekler
 
@@ -25,12 +25,13 @@ Agent'ın kaynak cümlenin iskeletini koruması yerine anlamdan hareket etmesini
 | `16 işletme bulundu, 12'si telefonlu.` | `16 işletme bulundu, 12 telefon numarası bulundu.` |
 | `Aynı işletme için tekrar kayıt oluşturulmaz.` | `Aynı işletme ikinci kez eklenmez.` |
 | `Kart istemiyoruz.` | `Kredi kartı gerekmez.` |
+| `Buket için randevu almak istiyorum.` | `Buket siparişi vermek istiyorum.` |
 
 Skill ters hatayı da önlemeye çalışır. `Sen satışa bak.`, `Bulamazsa uydurmaz.`, `Site kurmak` veya `Linki gönder.` gibi doğal ifadeler bağlama uyuyorsa gereksiz yere değiştirilmez.
 
 ## Nerede kullanılır?
 
-Pazarlama, ürün/UI metinleri, SaaS, lokalizasyon, dokümantasyon, destek içerikleri, hukuk/gizlilik/güvenlik metinleri, kurumsal iletişim ve AI tarafından yazılmış Türkçenin gözden geçirilmesinde kullanılabilir.
+Pazarlama, ürün/UI metinleri, SaaS, lokalizasyon, dokümantasyon, destek içerikleri, hukuk/gizlilik/güvenlik metinleri, kurumsal iletişim, otomatik oluşturulan işletme sayfaları ve AI tarafından yazılmış Türkçenin gözden geçirilmesinde kullanılabilir.
 
 Genel yazım denetleyicisi, AI detector, İngilizce kelime yasak listesi veya profesyonel hukuk incelemesinin yerine geçen bir araç değildir.
 
@@ -63,21 +64,22 @@ Preserve the facts, but do not preserve English sentence structure.
 
 ## Nasıl çalışır?
 
-Skill önce hedef kitleyi ve tonu belirler, bilgiyi mevcut cümle yapısından ayırır, kelime seçiminden önce yapısal sorunları arar, yabancı cümle iskeletini yeniden kurar ve son olarak bilgi sadakati ile aşırı düzeltmeyi kontrol eder.
+Skill önce hedef kitleyi ve tonu belirler, bilgiyi mevcut cümle yapısından ayırır, kelime seçiminden önce yapısal sorunları arar, sayfadaki alanların gerçekten o sektöre ve işe ait olup olmadığını kontrol eder, yabancı cümle iskeletini yeniden kurar ve son olarak bilgi sadakati ile aşırı düzeltmeyi denetler.
 
-Toplam **51 Türkçeye özel kalıp** beş grupta toplanır:
+Toplam **57 Türkçeye özel kalıp** altı grupta toplanır:
 
 - 1–10: cümle mimarisi,
 - 11–20: fiil seçimi ve doğal kelime birliktelikleri,
 - 21–30: ürün, UI ve lokalizasyon,
 - 31–40: pazarlama ve model yazımı,
-- 41–51: ton, bilgi sadakati ve son kontroller.
+- 41–51: ton, bilgi sadakati ve son kontroller,
+- 52–57: sektör ve sayfa bütünlüğü.
 
 Ayrıntılı açıklamalar, örnekler ve false-positive korumaları [`references/`](references/) altında; çalışma talimatları [`SKILL.md`](SKILL.md) içinde.
 
 ## Eval seti
 
-Repo [`evals/cases/`](evals/cases/) altında **88 regression vakası** içerir. Bunların arasında değiştirilmemesi gereken doğal Türkçe örnekleri de vardır. Numaralandırılmış 51 kalıbın tamamı eval setinde kapsanır.
+Repo [`evals/cases/`](evals/cases/) altında **105 regression vakası** içerir. Bunların arasında değiştirilmemesi gereken doğal Türkçe örnekleri de vardır. Numaralandırılmış 57 kalıbın tamamı eval setinde kapsanır.
 
 ```bash
 python3 -m pip install -r requirements-dev.txt
@@ -88,11 +90,11 @@ Benchmark yaklaşımı için [`docs/BENCHMARKING.md`](docs/BENCHMARKING.md), tas
 
 ## Proje durumu
 
-Güncel sürüm **v0.3.0, 1.0 öncesi**. Repo herkese açık test ve katkı için hazırlanmıştır. Kalıp adları ve eval şeması, daha fazla örnek ve native-reader geri bildirimi geldikçe değişebilir.
+Güncel sürüm **v0.5.0, 1.0 öncesi**. Kalıp adları ve eval şeması, daha fazla örnek ve native-reader geri bildirimi geldikçe değişebilir.
 
 ## Humanizer ile ilişkisi
 
-[blader/humanizer](https://github.com/blader/humanizer) genel AI yazım kalıplarına odaklanır. Turkish Native ise daha dar bir problemi çözer: Türkçeye özgü translationese ve doğal olmayan cümle kuruluşu.
+[blader/humanizer](https://github.com/blader/humanizer) genel AI yazım kalıplarına odaklanır. Turkish Native ise daha dar bir problemi çözer: Türkçeye özgü translationese, doğal olmayan cümle kuruluşu ve sayfa düzeyinde sektör tutarlılığı.
 
 Turkish Native bir Humanizer fork'u değildir ve onun pattern taxonomy'sini kullanmaz. Repo paketleme yaklaşımı Humanizer'dan ilham almıştır.
 
