@@ -8,11 +8,13 @@ authors:
 repository-code: "https://github.com/oguzhankayan/turkish-native"
 url: "https://github.com/oguzhankayan/turkish-native"
 license: MIT
-version: "0.3.0"
-date-released: "2026-09-12"
+version: "0.5.0"
+date-released: "2026-09-13"
 keywords:
   - Turkish
   - localization
   - translationese
   - language model
   - agent skill
+  - copywriting
+  - domain integrity
