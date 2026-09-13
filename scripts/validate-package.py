@@ -31,7 +31,9 @@ required = [
     ROOT / "references" / "03-product-ui-localization.md",
     ROOT / "references" / "04-marketing-model-copy.md",
     ROOT / "references" / "05-register-fidelity.md",
+    ROOT / "references" / "06-domain-page-integrity.md",
     ROOT / "evals" / "README.md",
+    ROOT / "evals" / "cases" / "06-domain-page-integrity.yaml",
 ]
 for path in required:
     if not path.exists():
@@ -78,8 +80,8 @@ if eval_dir.exists():
             all_cases.extend(data.get("cases") or [])
         eval_count = len(all_cases)
         ids = [case.get("id") for case in all_cases]
-        if eval_count < 60:
-            errors.append(f"evaluation set is too small: {eval_count} (minimum 60)")
+        if eval_count < 100:
+            errors.append(f"evaluation set is too small: {eval_count} (minimum 100)")
         if len(ids) != len(set(ids)):
             errors.append("duplicate evaluation case IDs")
         valid_patterns = set(patterns)
@@ -91,8 +93,8 @@ if eval_dir.exists():
         if missing:
             errors.append(f"patterns without eval coverage: {missing}")
         positive_controls = sum(1 for case in all_cases if case.get("expected") == case.get("input"))
-        if positive_controls < 8:
-            errors.append(f"too few positive controls: {positive_controls} (minimum 8)")
+        if positive_controls < 10:
+            errors.append(f"too few positive controls: {positive_controls} (minimum 10)")
 
 if errors:
     for error in errors:
