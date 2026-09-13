@@ -1,0 +1,117 @@
+version: 3
+cases:
+- id: p52-auto-sales-residue
+  pattern: 52
+  input: "Araç ihtiyacı: Şehir otomobili / Aile aracı / Performans odaklı araç / Konfor odaklı araç"
+  instruction: This field appears on an auto-repair page. Replace vehicle-selection logic with repair-service logic without inventing unsupported services.
+  expected_not_contains:
+  - Şehir otomobili
+  - Aile aracı
+  expected_contains:
+  - İşlem
+- id: p52-florist-appointment-residue
+  pattern: 52
+  input: Merhaba Çiçekçi, Buket & aranjman için randevu almak istiyorum.
+  instruction: This is a florist WhatsApp CTA.
+  expected_not_contains:
+  - randevu
+  expected_contains:
+  - sipariş
+- id: p52-dental-appointment-control
+  pattern: 52
+  input: İmplant tedavisi için randevu almak istiyorum.
+  instruction: This is a dental-clinic WhatsApp CTA; appointment language is appropriate.
+  expected: İmplant tedavisi için randevu almak istiyorum.
+
+- id: p53-restaurant-stock-language
+  pattern: 53
+  input: Bu kartta fiyat ve stok bilgisi yoktur; günün seçeneklerini işletmeden öğrenin.
+  instruction: This is customer-facing restaurant menu copy.
+  expected_not_contains:
+  - stok
+  expected_contains:
+  - menü
+- id: p53-auto-intake-abstract
+  pattern: 53
+  input: Kullanım amacı ve öncelikler görüşmenin başlangıç noktasıdır.
+  instruction: This is an auto-service intake section. Use task-relevant information instead of generic sales language.
+  expected_property: must_use_domain_relevant_intake_language
+- id: p53-menu-control
+  pattern: 53
+  input: Güncel menü ve fiyat bilgisi için işletmeyle iletişime geçin.
+  instruction: Natural restaurant copy; keep it.
+  expected: Güncel menü ve fiyat bilgisi için işletmeyle iletişime geçin.
+
+- id: p54-florist-delivery-promise
+  pattern: 54
+  input: İstediğiniz saat ve adrese, şehir içinde kısa sürede ulaştırırız.
+  instruction: No delivery-time guarantee was provided by the business.
+  expected_not_contains:
+  - istediğiniz saat
+  - kısa sürede
+  expected_property: must_not_add_unsupported_operational_promise
+- id: p54-response-time-promise
+  pattern: 54
+  input: Mesajlarınıza çalışma saatleri içinde yanıt veriyoruz.
+  instruction: The business has not supplied a response-time policy.
+  expected_property: must_remove_or_narrow_unsupported_operational_promise
+- id: p54-verified-same-day-control
+  pattern: 54
+  input: İstanbul içi siparişlerde aynı gün teslimat yapıyoruz.
+  instruction: The business explicitly supplied and verified this service promise. Preserve its scope; do not strengthen it.
+  expected: İstanbul içi siparişlerde aynı gün teslimat yapıyoruz.
+
+- id: p55-implant-outcome-claim
+  pattern: 55
+  input: Eksik dişler için kalıcı, doğal görünümlü implant çözümleri.
+  instruction: Generic dental demo; no outcome or permanence claim is verified.
+  expected_not_contains:
+  - kalıcı
+  - doğal görünümlü
+  expected_contains:
+  - implant
+- id: p55-whitening-claim
+  pattern: 55
+  input: Klinik ortamında güvenli, tek seansta fark edilen beyazlatma.
+  instruction: Generic dental demo; safety and one-session result are unsupported.
+  expected_not_contains:
+  - güvenli
+  - tek seansta
+  expected_property: must_use_narrower_medical_language
+- id: p55-neutral-medical-control
+  pattern: 55
+  input: Muayene sonrasında uygun tedavi seçenekleri hakkında bilgi alabilirsiniz.
+  instruction: Appropriate conditional health copy; keep it.
+  expected: Muayene sonrasında uygun tedavi seçenekleri hakkında bilgi alabilirsiniz.
+
+- id: p56-synthetic-google-reviews
+  pattern: 56
+  input: "Google değerlendirmeleri\nÖrnek yorum"
+  instruction: The quote and reviewer are generated placeholders, not sourced from Google.
+  expected_not_contains:
+  - Google değerlendirmeleri
+  expected_property: must_label_synthetic_content_as_example_or_remove_source_claim
+- id: p56-real-google-review-control
+  pattern: 56
+  input: "Google değerlendirmeleri\nBakım için geldim, aracımı zamanında teslim aldım."
+  instruction: The user supplied this as an exact, verified Google review. Preserve the quotation and source label.
+  expected: "Google değerlendirmeleri\nBakım için geldim, aracımı zamanında teslim aldım."
+
+- id: p57-restaurant-process-theater
+  pattern: 57
+  input: "01 Kategorilere bakın.\n02 Telefonla sorun.\n03 WhatsApp'tan yazın.\n04 Konumu açın."
+  instruction: This is a restaurant landing page. These are obvious interface actions, not a meaningful business process.
+  expected_property: must_remove_or_condense_process_theater
+- id: p57-auto-service-process-control
+  pattern: 57
+  input: "01 Randevu oluşturun.\n02 Araç kontrol edilsin.\n03 Yapılacak işlemler ve fiyat paylaşılsın.\n04 Onay sonrası servis başlasın."
+  instruction: This is a real auto-service sequence that helps the user understand what happens next.
+  expected: "01 Randevu oluşturun.\n02 Araç kontrol edilsin.\n03 Yapılacak işlemler ve fiyat paylaşılsın.\n04 Onay sonrası servis başlasın."
+
+- id: p43-whatsapp-storage-absolute
+  pattern: 43
+  input: Bilgileriniz yalnızca WhatsApp mesajına eklenir, hiçbir yerde saklanmaz.
+  instruction: The implementation and data flow have not been verified. Do not make an absolute privacy claim.
+  expected_not_contains:
+  - hiçbir yerde saklanmaz
+  expected_property: must_not_add_unverified_privacy_claim
