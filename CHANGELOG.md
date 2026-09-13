@@ -8,6 +8,29 @@ The project is pre-1.0. Minor releases may still refine pattern names, evaluatio
 
 - No unreleased changes yet.
 
+## 0.4.0 - 2026-09-13
+
+### Added
+
+- Three patterns (49-51) drawn from a 93-page production run of the skill:
+  collapsing every sentence into one shape, the same sentence living in two
+  slots of a page, and section labels that repeat the navigation.
+- Evaluation cases for the new patterns, including set-level cases: the input
+  is several headings from one page, because shape monotony and self-repetition
+  cannot be seen one sentence at a time.
+- Regression cases for mistranslations caught in production: `kalıp oranı` for
+  a pass rate (it reads as the FAILURE rate), `sır` glaze written as `sırrını`,
+  a bicycle wheel described with the car word `rot`, `gezdir` for `gezdirir`,
+  `palamuta kadar` closing a list, a literal "walk in", and a `sen` heading on
+  a `siz` page.
+
+### Changed
+
+- `SKILL.md` non-negotiable checks now ask whether one repaired shape has been
+  copied onto every sentence, and whether a line repeats what another line on
+  the same page already said. Both are page-level questions; every check before
+  them could be answered one sentence at a time.
+
 ## 0.3.0 - 2026-09-12
 
 ### Added

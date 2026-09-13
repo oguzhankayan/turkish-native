@@ -65,19 +65,19 @@ Preserve the facts, but do not preserve English sentence structure.
 
 Skill önce hedef kitleyi ve tonu belirler, bilgiyi mevcut cümle yapısından ayırır, kelime seçiminden önce yapısal sorunları arar, yabancı cümle iskeletini yeniden kurar ve son olarak bilgi sadakati ile aşırı düzeltmeyi kontrol eder.
 
-Toplam **48 Türkçeye özel kalıp** beş grupta toplanır:
+Toplam **51 Türkçeye özel kalıp** beş grupta toplanır:
 
 - 1–10: cümle mimarisi,
 - 11–20: fiil seçimi ve doğal kelime birliktelikleri,
 - 21–30: ürün, UI ve lokalizasyon,
 - 31–40: pazarlama ve model yazımı,
-- 41–48: ton, bilgi sadakati ve son kontroller.
+- 41–51: ton, bilgi sadakati ve son kontroller.
 
 Ayrıntılı açıklamalar, örnekler ve false-positive korumaları [`references/`](references/) altında; çalışma talimatları [`SKILL.md`](SKILL.md) içinde.
 
 ## Eval seti
 
-Repo [`evals/cases/`](evals/cases/) altında **72 regression vakası** içerir. Bunların arasında değiştirilmemesi gereken doğal Türkçe örnekleri de vardır. Numaralandırılmış 48 kalıbın tamamı eval setinde kapsanır.
+Repo [`evals/cases/`](evals/cases/) altında **88 regression vakası** içerir. Bunların arasında değiştirilmemesi gereken doğal Türkçe örnekleri de vardır. Numaralandırılmış 51 kalıbın tamamı eval setinde kapsanır.
 
 ```bash
 python3 -m pip install -r requirements-dev.txt

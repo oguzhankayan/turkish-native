@@ -74,19 +74,19 @@ Keep keys, variables, URLs, code, and route names unchanged.
 
 Turkish Native uses a meaning-first workflow: identify the audience and register, separate facts from wording, fix structural problems before isolated vocabulary, rebuild foreign sentence architecture, then check native flow, factual fidelity, and over-editing.
 
-The taxonomy contains **48 patterns** in five groups:
+The taxonomy contains **51 patterns** in five groups:
 
 - 1–10: sentence architecture,
 - 11–20: verb choice and lexical fit,
 - 21–30: product, UI, and localization,
 - 31–40: marketing and model-written copy,
-- 41–48: register, fidelity, and final checks.
+- 41–51: register, fidelity, and final checks.
 
 Detailed rules, examples, and false-positive guards live in [`references/`](references/). The compact runtime instructions live in [`SKILL.md`](SKILL.md).
 
 ## Evaluation
 
-The repository ships with **72 regression cases** across [`evals/cases/`](evals/cases/), including positive controls that should remain unchanged. Every numbered pattern has evaluation coverage.
+The repository ships with **88 regression cases** across [`evals/cases/`](evals/cases/), including positive controls that should remain unchanged. Every numbered pattern has evaluation coverage.
 
 ```bash
 python3 -m pip install -r requirements-dev.txt

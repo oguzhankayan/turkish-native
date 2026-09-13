@@ -75,3 +75,54 @@ Before finalizing, perform two checks:
 2. **Source-free test:** If the source-language sentence disappeared and only the intended meaning remained, would you independently build the same Turkish sentence?
 
 If either answer is no, rebuild the sentence.
+
+### 49. Collapsing every sentence into one shape
+
+Fixing a bad shape by giving every sentence the same replacement shape is the same failure with a new face.
+
+Turkish puts the finite verb last and marks person in the ending, so the ending is the most visible thing on the line. When a set of headings all end `-ız / -iz` (`yaparız`, `veririz`, `ederiz`), the page stops reading as writing and starts reading as a template — even though every sentence is individually correct.
+
+**Bad, as a set:**
+
+- `Masajdan cilt bakımına kadar hepsini yaparız.`
+- `Seans sonrası devam önerisi veririz.`
+- `Seansı üç adımda tamamlarız.`
+
+**Better, as a set:**
+
+- `Masajdan cilt bakımına kadar hepsi var.`
+- `Seanstan sonra devam önerisi de var.`
+- `Seans üç adımda ilerler.`
+
+Turkish offers several natural shapes for the same fact, and a page should use more than one:
+
+| Shape | Example |
+|---|---|
+| Nominal predicate | `İlaç kadar danışmanlık da işimiz.` |
+| Reader as subject | `Yorgunluğunuzu burada bırakırsınız.` |
+| Object as subject | `Fırın her sabah erken yanar.` |
+| Impersonal / passive | `Arıza cihazla tespit edilir.` |
+| Bare sequence | `Keşiften teslime üç adım.` |
+| First person plural | `Sütü köyden alırız.` |
+
+Judge this at the level of the page, not the sentence. One `-ız` heading is a voice; four is a tic. Passive has the same failure mode: three impersonal headings in a row hide the business completely.
+
+### 50. The same sentence living in two places
+
+A page can repeat itself without repeating a word, because Turkish word order is free: the duplicate is usually reordered, so it looks like a second sentence.
+
+**Bad:** a band reading `Üreticimiz belgeli, ürünümüz katkısız.` under a heading reading `Sofranız katkısız, üreticimiz belgeli.`
+
+**Better:** one of them says something the other does not — `Sofranıza katkısız ürün gelir.` over `Üreticimiz belgeli, ürünümüz katkısız.`
+
+Check meaning, not string equality. Two slots that answer the same question are one slot.
+
+### 51. Section labels that repeat the navigation
+
+Turkish section labels and navigation labels reach for the same nouns — `Hizmetler`, `Galeri`, `İletişim` — so a small label above a heading often restates the link the reader just used to get there.
+
+**Bad:** a nav item `Hizmetler` above an eyebrow `Hizmetler` above a heading `Bakım menüsü`.
+
+**Better:** let the small label carry what the section is about, not where the reader is: `Güzellik ve bakım` above `Bakım menüsü`.
+
+A label earns its place when it adds the subject, the place, or the occasion. Delete it when it only names the section again.

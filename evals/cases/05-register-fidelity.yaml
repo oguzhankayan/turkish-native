@@ -77,3 +77,100 @@ cases:
   pattern: 42
   input: Bu sözleşmeye Türkiye Cumhuriyeti hukuku uygulanır.
   expected: Bu sözleşmeye Türkiye Cumhuriyeti hukuku uygulanır.
+- id: p49-we-verb-monotony
+  pattern: 49
+  input: "Masajdan cilt bakımına kadar hepsini yaparız.\nSeans sonrası devam önerisi veririz.\nSeansı üç adımda tamamlarız."
+  instruction: Three headings from one page. Each is correct on its own; judge them as a set.
+  expected_property: must_vary_sentence_shapes_across_the_set
+  expected_not_contains:
+  - yaparız
+- id: p49-process-heading-template
+  pattern: 49
+  input: "Tıraş üç adımda biter.\nTemizlik üç adımda biter.\nBaskı üç adımda biter."
+  instruction: The same heading on three different businesses' pages.
+  expected_property: must_vary_sentence_shapes_across_the_set
+- id: p49-single-we-control
+  pattern: 49
+  input: Sütü köyden alırız.
+  instruction: One first-person-plural sentence on a page is a voice, not a tic.
+  expected: Sütü köyden alırız.
+- id: p49-passive-monotony
+  pattern: 49
+  input: "Arıza cihazla tespit edilir.\nÜcret işlem öncesi bildirilir.\nİş üç adımda tamamlanır."
+  instruction: Three headings from one page.
+  expected_property: must_vary_sentence_shapes_across_the_set
+- id: p50-reordered-duplicate
+  pattern: 50
+  input: "Sofranız katkısız, üreticimiz belgeli.\nÜreticimiz belgeli, ürünümüz katkısız."
+  instruction: A section heading and the band beneath it. Keep both slots filled.
+  expected_property: second_slot_must_add_information
+- id: p50-same-sentence-two-bands
+  pattern: 50
+  input: "Doğru perde evi sıcacık yapar.\nDoğru perdeyle ev sıcacık olur."
+  instruction: A services heading and a band heading on one page.
+  expected_property: second_slot_must_add_information
+- id: p50-similar-but-different-control
+  pattern: 50
+  input: "Ekmeği her gün taze pişiririz.\nPastayı siparişe göre yaparız."
+  instruction: Two bands that look alike but state different facts.
+  expected: "Ekmeği her gün taze pişiririz.\nPastayı siparişe göre yaparız."
+- id: p51-nav-echo
+  pattern: 51
+  input: Hizmetler
+  instruction: A small label above the heading "Bakım menüsü", on a page whose navigation already has a link named "Hizmetler".
+  expected_not_contains:
+  - Hizmetler
+- id: p51-label-earns-place-control
+  pattern: 51
+  input: Kadıköy · Güzellik ve bakım
+  instruction: A small label above the hero heading. The navigation has no such item.
+  expected: Kadıköy · Güzellik ve bakım
+- id: p17-kalip-orani
+  pattern: 17
+  input: Yüksek kalıp oranıyla sınava hazırlıyoruz.
+  instruction: A driving school advertising how many students PASS the exam.
+  expected_not_contains:
+  - kalıp oranı
+  expected_contains:
+  - geçme
+- id: p17-sir-glaze
+  pattern: 17
+  input: Sırrını sürer, fırında özenle pişiririz.
+  instruction: A ceramics workshop. The noun is the glaze.
+  expected_not_contains:
+  - Sırrını
+  expected_contains:
+  - Sırını
+- id: p17-walk-in-calque
+  pattern: 17
+  input: Yürüyerek gelebilirsiniz; yoğun saatlerde randevu da alabilirsiniz.
+  instruction: An optician answering whether an appointment is required. The source idiom is "walk in".
+  expected_not_contains:
+  - Yürüyerek
+  expected_contains:
+  - Randevusuz
+- id: p12-rot-on-a-bicycle
+  pattern: 12
+  input: Fren, vites ve rotları usta elinden ayarlarız.
+  instruction: A bicycle shop. A bicycle wheel is trued; "rot" is a car part.
+  expected_not_contains:
+  - rot
+  expected_contains:
+  - jant
+- id: p47-gezdir
+  pattern: 47
+  input: Seçtiğiniz gayrimenkulleri gezdir, teklif veririz.
+  expected_contains:
+  - gezdirir
+- id: p47-palamuta-kadar
+  pattern: 47
+  input: Mevsimine göre levrek, çipura, hamsi, palamuta kadar birçok balık.
+  instruction: A list of fish, not a range.
+  expected_not_contains:
+  - palamuta kadar
+- id: p41-sen-siz-mix
+  pattern: 41
+  input: Seviyene özel, hedefe odaklı.
+  instruction: A section heading on a page that addresses the reader as "siz" everywhere else.
+  expected_not_contains:
+  - Seviyene

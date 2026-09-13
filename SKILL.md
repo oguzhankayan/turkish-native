@@ -8,7 +8,7 @@ description: |
   and sales calques, jargon leakage, forced slogans, and corporate abstraction.
 license: MIT
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Turkish Native
@@ -56,13 +56,13 @@ If the user asks for a literal, legal, or line-by-line translation, honor that f
 
 ## Pattern references
 
-This skill contains **48 Turkish-specific patterns**. Read the relevant bundled reference before rewriting; for broad copy review or translation, read all five.
+This skill contains **51 Turkish-specific patterns**. Read the relevant bundled reference before rewriting; for broad copy review or translation, read all five.
 
 - **1–10 Sentence architecture:** `references/01-sentence-architecture.md`
 - **11–20 Verb choice and lexical fit:** `references/02-verb-and-lexical-fit.md`
 - **21–30 Product, UI, and localization:** `references/03-product-ui-localization.md`
 - **31–40 Marketing and model-written copy:** `references/04-marketing-model-copy.md`
-- **41–48 Register, fidelity, and final checks:** `references/05-register-fidelity.md`
+- **41–51 Register, fidelity, and final checks:** `references/05-register-fidelity.md`
 
 These are diagnostic rules, not search-and-replace rules. Context always wins.
 
@@ -78,4 +78,6 @@ Before returning the text, verify that:
 - marketing copy does not repeat or inflate ordinary claims,
 - legal, security, and technical text preserves precision,
 - natural colloquial Turkish has not been “improved” into corporate prose,
+- one repaired shape has not been copied onto every sentence, and no line repeats
+  what another line on the same page already said,
 - the result sounds native when read without the source.
