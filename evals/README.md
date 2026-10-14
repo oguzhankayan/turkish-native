@@ -2,6 +2,10 @@
 
 `cases/*.yaml` is a regression corpus for Turkish Native.
 
+The held-out cross-model benchmark lives in `evals/benchmark/cases.yaml`. It
+is intentionally separate from the regression corpus and should be evaluated
+with blind A/B comparisons rather than used as runtime or training examples.
+
 It is intentionally not limited to exact-string rewrites. Natural Turkish can have multiple valid formulations, so cases may specify behavioral properties instead.
 
 ## Fields
@@ -22,7 +26,7 @@ A positive control is already-natural Turkish that should remain unchanged. Thes
 
 ## Benchmarking
 
-For model comparisons, run the same case set with and without the skill. Score at least:
+For model comparisons, use `benchmark/cases.yaml` and run the same case set with and without the skill. Score at least:
 
 1. factual fidelity,
 2. native-reader preference,

@@ -1,0 +1,410 @@
+version: "0.4"
+description: >-
+  Held-out cases for cross-model and native-reader comparison. This corpus is
+  separate from evals/cases and contains no expected rewrites.
+
+cases:
+  - id: bench-01-subordinate-clause
+    pattern: 1
+    group: sentence-architecture
+    input: "Raporu kimin hazırladığını ve kimin onayladığını belirt."
+    instruction: "Review for a concise internal audit note. Preserve both roles and the imperative; leave the wording unchanged if it is already natural."
+    case_type: preservation
+    positive_control: true
+    dimensions:
+      fidelity: "Keep the preparer and approver as two distinct roles."
+      native_turkish: "Avoid a literal coordination of two finite questions."
+      pattern_resolution: "Use a natural subordinate-clause structure."
+      register: "Concise, neutral, internal documentation."
+      restraint: "Do not add audit details that are not in the input."
+    exact_invariants:
+      - "preparer and approver remain distinct"
+
+  - id: bench-02-causal-order
+    pattern: 4
+    group: sentence-architecture
+    input: "Kullanıcı ayarları açtı ve kullanıcı raporu indirdi."
+    instruction: "Rewrite this help-centre sentence to avoid repeating the subject without changing its meaning."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "The user opens the settings and downloads the report."
+      native_turkish: "Avoid repeating the subject when Turkish makes it clear."
+      pattern_resolution: "Remove the copied subject without dropping either action."
+      register: "Clear and concise help-centre copy."
+      restraint: "Do not add a reason, result, or extra user role."
+    exact_invariants:
+      - "the user opens the settings"
+      - "the user downloads the report"
+
+  - id: bench-03-information-focus
+    pattern: 9
+    group: sentence-architecture
+    input: "Değiştirebilir bu ayarı yalnızca hesabın sahibi."
+    instruction: "Rewrite as a short permission notice with natural Turkish word order while keeping the restriction explicit."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "Only the account owner may change the setting."
+      native_turkish: "Make the focus on the authorized person sound idiomatic."
+      pattern_resolution: "Keep the scope of yalnızca unambiguous."
+      register: "Short product/UI notice."
+      restraint: "Do not introduce an administrator role."
+    exact_invariants:
+      - "only the account owner is authorized"
+
+  - id: bench-04-page-integrity
+    pattern: 53
+    group: domain-and-page-integrity
+    input: "Bu sayfada mağazaların çalışma saatlerini ve teslimat bölgelerini bulabilirsiniz."
+    instruction: "Adapt for a local business directory page; keep both pieces of information and leave the wording unchanged if it already fits."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "Preserve opening hours and delivery areas."
+      native_turkish: "Use ordinary Turkish directory language."
+      pattern_resolution: "Keep the page promise scoped to the information named."
+      register: "Helpful, plain web copy."
+      restraint: "Do not claim that every store offers delivery."
+    exact_invariants:
+      - "opening hours"
+      - "delivery areas"
+
+  - id: bench-05-verb-collocation
+    pattern: 11
+    group: verb-and-lexical-fit
+    input: "Değişikliği gerçekleştirmek için işlemi yapın."
+    instruction: "Rewrite for a Turkish desktop application with a specific action verb without changing the action."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "The user should complete the change."
+      native_turkish: "Use a specific Turkish verb instead of a generic verb pair."
+      pattern_resolution: "Replace generic gerçekleştirmek/yapmak wording with the action the UI actually performs."
+      register: "Direct but polite UI instruction."
+      restraint: "Do not invent a button, menu item, or additional control."
+    exact_invariants:
+      - "the change is completed"
+
+  - id: bench-06-case-suffix
+    pattern: 10
+    group: sentence-architecture
+    input: "Dosyayı ekip arkadaşlarınla e-postada paylaşabilirsin."
+    instruction: "Make this collaboration hint sound native and keep the channel and audience."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "Sharing is with teammates through email."
+      native_turkish: "Choose the natural Turkish case for the sharing channel."
+      pattern_resolution: "Do not preserve an English-like preposition mapping."
+      register: "Friendly product guidance."
+      restraint: "Do not change email into a link or chat message."
+    exact_invariants:
+      - "email remains the channel"
+      - "teammates remain the audience"
+
+  - id: bench-07-technical-noun
+    pattern: 44
+    group: register-fidelity-final-checks
+    input: "Sunucu yanıt vermediğinde yedek bağlantı devreye girer."
+    instruction: "Rewrite for a status page. Keep the failover behavior and the condition."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "The backup connection activates when the server does not respond."
+      native_turkish: "Use terminology a Turkish operations team would accept."
+      pattern_resolution: "Do not turn the condition into a scheduled action."
+      register: "Calm, technical status copy."
+      restraint: "Do not infer an outage duration or root cause."
+    exact_invariants:
+      - "server non-response is the condition"
+      - "backup connection activates"
+
+  - id: bench-08-meaning-preservation
+    pattern: 46
+    group: register-fidelity-final-checks
+    input: "İstersen taslağı gözden geçirip yorum bırakabilirsin."
+    instruction: "Polish this invitation for a team workspace. Preserve its optional tone."
+    case_type: preservation
+    positive_control: true
+    dimensions:
+      fidelity: "Reviewing and leaving a comment are offered, not required."
+      native_turkish: "Keep the invitation idiomatic and collaborative."
+      pattern_resolution: "Do not turn istersen into a command."
+      register: "Warm, professional team communication."
+      restraint: "Do not add approval or publication steps."
+    exact_invariants:
+      - "review is optional"
+      - "comment can be left"
+
+  - id: bench-09-ui-label
+    pattern: 25
+    group: product-ui-localization
+    input: "İçe aktarma tamamlandığında sonuçları gözden geçirmek için devam edin."
+    instruction: "Rewrite as a compact onboarding step. Keep the sequence and purpose."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "The import finishes before the user reviews results."
+      native_turkish: "Use a natural Turkish onboarding instruction."
+      pattern_resolution: "Keep continue as the next step, not as an ongoing process."
+      register: "Brief, friendly product UI."
+      restraint: "Do not say the import was successful unless the input does."
+    exact_invariants:
+      - "import completes first"
+      - "results are reviewed next"
+
+  - id: bench-10-plural-count
+    pattern: 29
+    group: product-ui-localization
+    input: "İndirilmeyi bekleyen 3 raporunuz var."
+    instruction: "Adapt this for a notification badge and preserve the exact count."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "There are exactly three reports waiting for download."
+      native_turkish: "Make the count and plural noun read naturally in Turkish."
+      pattern_resolution: "Do not drop or relocate the numeric fact."
+      register: "Compact notification copy."
+      restraint: "Do not imply that downloading has started."
+    exact_invariants:
+      - "the number 3"
+      - "reports are waiting to download"
+
+  - id: bench-11-placeholder-integrity
+    pattern: 44
+    group: register-fidelity-final-checks
+    input: "{{name}} için yeni bir görev oluşturuldu."
+    instruction: "Rewrite for a task notification. Keep the placeholder byte-for-byte unchanged."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "A new task was created for the named person."
+      native_turkish: "Use natural notification wording."
+      pattern_resolution: "Keep the template placeholder untouched."
+      register: "Neutral in-product notification."
+      restraint: "Do not add who created the task or its due date."
+    exact_invariants:
+      - "{{name}}"
+      - "a new task was created"
+
+  - id: bench-12-product-term
+    pattern: 46
+    group: register-fidelity-final-checks
+    input: "Bu çalışma alanından ayrıldığınızda taslaklarınız silinmez."
+    instruction: "Make this reassurance suitable for a workspace settings page."
+    case_type: preservation
+    positive_control: true
+    dimensions:
+      fidelity: "Leaving the workspace does not delete drafts."
+      native_turkish: "Use a natural Turkish settings-page formulation."
+      pattern_resolution: "Do not confuse leaving with deleting the workspace."
+      register: "Clear, reassuring settings copy."
+      restraint: "Do not promise that drafts remain accessible forever."
+    exact_invariants:
+      - "leaving the workspace"
+      - "drafts are not deleted"
+
+  - id: bench-13-marketing-claim
+    pattern: 38
+    group: marketing-and-model-copy
+    input: "Ekibinizin daha hızlı hareket etmesini sağlayan tek platform."
+    instruction: "Rewrite as restrained B2B homepage copy without inventing a measurable claim."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "The product is positioned as a platform for team workflow."
+      native_turkish: "Avoid a translated superlative and empty slogan structure."
+      pattern_resolution: "Do not turn tek platform into an unverifiable market claim."
+      register: "Confident but credible B2B marketing."
+      restraint: "Do not add percentages, awards, or customer results."
+    exact_invariants:
+      - "platform for teams"
+
+  - id: bench-14-benefit-scope
+    pattern: 39
+    group: marketing-and-model-copy
+    input: "Daha iyi kararlar almanız için verileri tek yerde toplar."
+    instruction: "Polish for a product overview while keeping the mechanism and benefit modest."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "Data is gathered in one place to support decisions."
+      native_turkish: "Use a natural, non-formulaic benefit sentence."
+      pattern_resolution: "Keep support for decisions distinct from guaranteed outcomes."
+      register: "Modern but restrained product marketing."
+      restraint: "Do not claim that decisions will definitely improve."
+    exact_invariants:
+      - "data is gathered in one place"
+      - "decision support remains modest"
+
+  - id: bench-15-call-to-action
+    pattern: 40
+    group: marketing-and-model-copy
+    input: "İş akışınızı bugün dönüştürmeye başlayın."
+    instruction: "Rewrite for a serious enterprise landing page and avoid hype."
+    case_type: correction
+    positive_control: false
+    dimensions:
+      fidelity: "The call to action invites starting with the product today."
+      native_turkish: "Avoid a literal transformation slogan."
+      pattern_resolution: "Keep the invitation actionable rather than grandiose."
+      register: "Professional enterprise CTA."
+      restraint: "Do not add urgency, scarcity, or guaranteed gains."
+    exact_invariants:
+      - "invitation to start today"
+
+  - id: bench-16-supportive-proof
+    pattern: 39
+    group: marketing-and-model-copy
+    input: "Binlerce ekip işlerini bizimle daha kolay yürütüyor."
+    instruction: "Review for a case-study intro. Preserve the social-proof claim but make no stronger claim."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "The claim is that thousands of teams use the product and find work easier."
+      native_turkish: "Make the sentence sound like human Turkish copy."
+      pattern_resolution: "Keep social proof separate from a guarantee of results."
+      register: "Warm, credible case-study introduction."
+      restraint: "Do not change thousands to millions or add named customers."
+    exact_invariants:
+      - "thousands of teams"
+
+  - id: bench-17-register-shift
+    pattern: 42
+    group: register-fidelity-final-checks
+    input: "Başvurunuz inceleniyor; sonuç hazır olduğunda size haber vereceğiz."
+    instruction: "Rewrite for a public-sector application portal. Keep the neutral status and future notification."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "The application is under review and the applicant will be notified later."
+      native_turkish: "Prefer formal Turkish used in public services."
+      pattern_resolution: "Do not make the review sound complete."
+      register: "Formal, respectful, accessible."
+      restraint: "Do not give an estimated date or imply approval."
+    exact_invariants:
+      - "application is still under review"
+      - "notification will follow"
+
+  - id: bench-18-factual-fidelity
+    pattern: 47
+    group: register-fidelity-final-checks
+    input: "Toplantı 14 Haziran'da Ankara ofisinde yapılacak."
+    instruction: "Shorten for a calendar card. Preserve the date, city, and future tense."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "The meeting is on 14 June in the Ankara office."
+      native_turkish: "Use a natural compact calendar-card label."
+      pattern_resolution: "Do not normalize or localize the date away."
+      register: "Neutral event UI."
+      restraint: "Do not add a time, address, or online option."
+    exact_invariants:
+      - "14 June"
+      - "Ankara office"
+
+  - id: bench-19-preserve-identifier
+    pattern: 44
+    group: register-fidelity-final-checks
+    input: "İzleme bağlantısı: https://status.example.test/incidents/42"
+    instruction: "Place this in a Turkish incident update. Keep the URL exactly unchanged."
+    case_type: preservation
+    positive_control: true
+    dimensions:
+      fidelity: "The incident link remains the only technical identifier."
+      native_turkish: "Add only natural surrounding Turkish if needed."
+      pattern_resolution: "Preserve the URL byte-for-byte."
+      register: "Clear, calm incident communication."
+      restraint: "Do not invent incident details or replace the link with a label only."
+    exact_invariants:
+      - "https://status.example.test/incidents/42"
+
+  - id: bench-20-positive-clean-ui
+    pattern: 46
+    group: register-fidelity-final-checks
+    input: "Linki ekip arkadaşına gönder."
+    instruction: "Review this short UI instruction and change it only if it is unnatural."
+    case_type: preservation
+    positive_control: true
+    dimensions:
+      fidelity: "The link should be sent to a teammate."
+      native_turkish: "The existing wording is a plausible native imperative."
+      pattern_resolution: "Avoid correcting a sentence that has no target problem."
+      register: "Concise, informal product UI."
+      restraint: "Prefer no change unless a concrete issue is found."
+    exact_invariants:
+      - "link"
+      - "teammate"
+
+  - id: bench-21-domain-coherence
+    pattern: 53
+    group: domain-and-page-integrity
+    input: "Kurs sayfasında eğitmenin özgeçmişini, ders süresini ve ön koşulları görebilirsiniz."
+    instruction: "Polish for an online learning catalogue. Keep every course attribute."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "The page exposes instructor biography, duration, and prerequisites."
+      native_turkish: "Use natural catalogue language."
+      pattern_resolution: "Keep the sentence inside the course-page domain."
+      register: "Informative education product copy."
+      restraint: "Do not add ratings, certificates, or skill outcomes."
+    exact_invariants:
+      - "instructor biography"
+      - "duration"
+      - "prerequisites"
+
+  - id: bench-22-page-scope
+    pattern: 53
+    group: domain-and-page-integrity
+    input: "Bu restoranın menüsünde vejetaryen seçenekleri, çalışma saatleri ve rezervasyon bilgileri yer alıyor."
+    instruction: "Rewrite for a restaurant profile page. Preserve all three kinds of information."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "The profile has vegetarian options, hours, and reservation information."
+      native_turkish: "Use ordinary Turkish restaurant-profile wording."
+      pattern_resolution: "Do not collapse the three attributes into a generic description."
+      register: "Useful local-search copy."
+      restraint: "Do not claim that reservations are available online."
+    exact_invariants:
+      - "vegetarian options"
+      - "opening hours"
+      - "reservation information"
+
+  - id: bench-23-entity-consistency
+    pattern: 53
+    group: domain-and-page-integrity
+    input: "Mavi Fırın'ın Kadıköy şubesinde hafta sonu kahvaltısı servis ediliyor."
+    instruction: "Adapt for a local-business card. Keep the business name, branch, and service."
+    case_type: adaptation
+    positive_control: false
+    dimensions:
+      fidelity: "Mavi Fırın offers weekend breakfast at its Kadıköy branch."
+      native_turkish: "Keep the business-card sentence fluent and compact."
+      pattern_resolution: "Do not move the service to another branch or entity."
+      register: "Plain local-search listing."
+      restraint: "Do not add hours, prices, or a recommendation."
+    exact_invariants:
+      - "Mavi Fırın"
+      - "Kadıköy"
+      - "weekend breakfast"
+
+  - id: bench-24-positive-domain
+    pattern: 53
+    group: domain-and-page-integrity
+    input: "Kütüphane kartınızı yenilemek için kimliğinizle danışmaya başvurun."
+    instruction: "Review for a library website and preserve the natural wording if it already fits."
+    case_type: preservation
+    positive_control: true
+    dimensions:
+      fidelity: "Renewal requires an ID and a visit to the information desk."
+      native_turkish: "The sentence already fits a library instruction page."
+      pattern_resolution: "Do not replace a coherent domain-specific instruction."
+      register: "Formal but accessible public-service copy."
+      restraint: "Prefer no change unless a concrete issue is found."
+    exact_invariants:
+      - "library card renewal"
+      - "identification"
+      - "information desk"

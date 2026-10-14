@@ -11,5 +11,6 @@ Explain why this is a recurring native-Turkish distinction rather than a one-off
 - [ ] Added or updated `evals/cases/` when behavior changed
 - [ ] Added a false-positive / positive-control case where appropriate
 - [ ] Ran `python3 scripts/validate-package.py`
+- [ ] Ran `python3 scripts/validate-benchmark.py` when changing `evals/benchmark/cases.yaml`
 - [ ] Updated `CHANGELOG.md` under `Unreleased`
 - [ ] Kept `README.md` / `README.tr.md` / `SKILL.md` in sync when pattern names or count changed

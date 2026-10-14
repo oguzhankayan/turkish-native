@@ -93,9 +93,14 @@ The repository ships with **105 regression cases** across [`evals/cases/`](evals
 ```bash
 python3 -m pip install -r requirements-dev.txt
 python3 scripts/validate-package.py
+python3 scripts/validate-benchmark.py
 ```
 
-The validator checks package structure, continuous pattern numbering, version consistency, unique case IDs, positive-control count, and per-pattern eval coverage. For benchmark methodology, see [`docs/BENCHMARKING.md`](docs/BENCHMARKING.md).
+The package validator checks package structure, continuous pattern numbering,
+version consistency, unique case IDs, positive-control count, and per-pattern
+eval coverage. The benchmark validator separately checks the held-out corpus
+schema, unique inputs, scoring dimensions, and pattern/group associations. For
+benchmark methodology, see [`docs/BENCHMARKING.md`](docs/BENCHMARKING.md).
 
 ## Project status
 
